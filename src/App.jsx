@@ -10,11 +10,23 @@ function handleSubmit(e) {
 
 setTodos((currentTodos) => {
     return [
-      ...currentTodos, { id: crypto.randomUUID, title: newItem, completed: false }
+      ...currentTodos,
+      { id: crypto.randomUUID, title: newItem, completed: false }
     ]
   })
+  setNewItem("")
 }
-console.log(todos);
+
+function toggleToDo(id, completed) {
+  setTodos(currentTodos => {
+    return currentTodos.map(todo => {
+      if(todo.id === id) {
+        return { ...todo, completed }
+      }
+      return todo
+    })
+  })
+}
 
 
 return (
@@ -31,13 +43,17 @@ return (
     <h1 className="header">To Do list</h1>
     <ul className="list">
     {todos.map(todo => {
-      return <li key={todo.id}>
+      return (
+        <li key={todo.id}>
         <label>
-          <input type="checkbox" checked={todo.completed} />
+          <input 
+          type="checkbox" 
+          checked={todo.completed} onChange={e => toggleToDo(e.target.checked)}/>
           {todo.title}
           <button className="btn btn-danger">Delete</button>
         </label>
       </li>
+      )
     })}
     </ul>
   </>
