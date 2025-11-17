@@ -48,6 +48,7 @@ return (
     </form>
     <h1 className="header">To Do list</h1>
     <ul className="list">
+    {todos.length === 0 && "No todos"}
     {todos.map(todo => {
       return (
         <li key={todo.id}>
