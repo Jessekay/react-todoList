@@ -11,7 +11,7 @@ function handleSubmit(e) {
 setTodos((currentTodos) => {
     return [
       ...currentTodos,
-      { id: crypto.randomUUID, title: newItem, completed: false }
+      { id: crypto.randomUUID(), title: newItem, completed: false }
     ]
   })
   setNewItem("")
