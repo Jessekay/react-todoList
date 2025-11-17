@@ -30,20 +30,15 @@ return (
     </form>
     <h1 className="header">To Do list</h1>
     <ul className="list">
-      <li>
+    {todos.map(todo => {
+      return <li key={todo.id}>
         <label>
-          <input type="checkbox" />
-          Item 1
+          <input type="checkbox" checked={todo.completed} />
+          {todo.title}
           <button className="btn btn-danger">Delete</button>
         </label>
       </li>
-      <li>
-        <label>
-          <input type="checkbox" />
-          Item 2
-          <button className="btn btn-danger">Delete</button>
-        </label>
-      </li>
+    })}
     </ul>
   </>
 )
