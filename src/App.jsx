@@ -11,6 +11,22 @@ return (
       <button className="btn">Add</button>
     </form>
     <h1 className="header">To Do list</h1>
+    <ul className="list">
+      <li>
+        <label>
+          <input type="checkbox" />
+          Item 1
+          <button className="btn btn-danger">Delete</button>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" />
+          Item 2
+          <button className="btn btn-danger">Delete</button>
+        </label>
+      </li>
+    </ul>
   </>
 )
 }
