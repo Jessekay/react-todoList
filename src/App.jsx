@@ -28,6 +28,12 @@ function toggleToDo(id, completed) {
   })
 }
 
+function deleteToDo(id) {
+  setTodos(currentTodos => {
+    return currentTodos.filter(todo => todo.id !== id)
+  })
+}
+
 
 return (
   <>
@@ -46,11 +52,13 @@ return (
       return (
         <li key={todo.id}>
         <label>
-          <input 
-          type="checkbox" 
+          <input
+          type="checkbox"
           checked={todo.completed} onChange={e => toggleToDo(e.target.checked)}/>
           {todo.title}
-          <button className="btn btn-danger">Delete</button>
+          <button
+          onClick={() => deleteToDo(todo.id)}
+          className="btn btn-danger">Delete</button>
         </label>
       </li>
       )
