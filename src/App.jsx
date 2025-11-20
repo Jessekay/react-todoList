@@ -2,9 +2,18 @@ import { useState } from "react"
 import "./styles.css"
 import { NewTodoForm } from "./NewToDoForm"
 
-export default function App() {
+export default function App(props) {
+  props.onSubmit
 const [todos, setTodos] = useState([])
 
+function addTodo(title) {
+  setTodos(currentTodos => {
+    return [
+      ...currentTodos,
+      { id: crypto.randomUUID(), title, completed: false },
+    ]
+  })
+}
 
 
 function toggleToDo(id, completed) {
@@ -27,7 +36,7 @@ function deleteToDo(id) {
 
 return (
   <>
-    <NewTodoForm />
+    <NewTodoForm onSubmit={addTodo}/>
     <h1 className="header">To Do list</h1>
     <ul className="list">
     {todos.length === 0 && "No todos"}
@@ -37,7 +46,8 @@ return (
         <label>
           <input
           type="checkbox"
-          checked={todo.completed} onChange={e => toggleToDo(e.target.checked)}/>
+          checked={todo.completed} 
+          onChange={e => toggleToDo(e.target.checked)}/>
           {todo.title}
           <button
           onClick={() => deleteToDo(todo.id)}
